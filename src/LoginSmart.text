@@ -1,0 +1,7 @@
+Permettre à un utilisateur de se connecter à son espace personnel.
+
+Tâches prévues :
+
+Créer le formulaire de connexion
+Vérifier le courriel et le mot de passe
+Afficher un message d'erreur si les informations sont invalides.
