@@ -1,0 +1,25 @@
+﻿<Window x:Class="SmartPharma.Views.ModifierQuantiteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modifier la quantité"
+        Height="250"
+        Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <StackPanel Margin="20">
+
+        <TextBlock Text="Médicament"/>
+        <TextBox x:Name="txtNom"
+                 IsReadOnly="True"
+                 Margin="0,5,0,10"/>
+
+        <TextBlock Text="Nouvelle quantité"/>
+        <TextBox x:Name="txtQuantite"
+                 Margin="0,5,0,15"/>
+
+        <Button Content="Enregistrer"
+                Height="35"
+                Click="BtnEnregistrer_Click"/>
+
+    </StackPanel>
+</Window>

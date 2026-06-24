@@ -1,0 +1,28 @@
+﻿<Window x:Class="SmartPharma.Views.ModifierMedicamentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modifier un médicament"
+        Height="350"
+        Width="400">
+
+    <StackPanel Margin="20">
+
+        <TextBlock Text="Nom"/>
+        <TextBox x:Name="txtNom"/>
+
+        <TextBlock Text="Prix" Margin="0,10,0,0"/>
+        <TextBox x:Name="txtPrix"/>
+
+        <TextBlock Text="Quantité" Margin="0,10,0,0"/>
+        <TextBox x:Name="txtQuantite"/>
+
+        <TextBlock Text="Date expiration" Margin="0,10,0,0"/>
+        <DatePicker x:Name="dpExpiration"/>
+
+        <Button Content="Modifier"
+                Margin="0,20,0,0"
+                Height="35"
+                Click="BtnModifier_Click"/>
+
+    </StackPanel>
+</Window>

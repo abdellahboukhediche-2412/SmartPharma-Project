@@ -1,0 +1,38 @@
+﻿<Window x:Class="SmartPharma.Views.EffectuerVenteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Effectuer une vente"
+        Height="400"
+        Width="450">
+
+    <StackPanel Margin="20">
+
+        <TextBlock Text="Médicament"/>
+        <ComboBox x:Name="cmbMedicaments"
+                  DisplayMemberPath="Nom"
+                  SelectedValuePath="Id"
+                  Height="30"
+                  Margin="0,5,0,10"/>
+
+        <TextBlock Text="Quantité vendue"/>
+        <TextBox x:Name="txtQuantite"
+                 Height="30"
+                 Margin="0,5,0,10"/>
+
+        <Button Content="Calculer le total"
+                Height="35"
+                Margin="0,10,0,0"
+                Click="BtnCalculer_Click"/>
+
+        <TextBlock x:Name="txtTotal"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0,15,0,0"/>
+
+        <Button Content="Enregistrer la vente"
+                Height="35"
+                Margin="0,20,0,0"
+                Click="BtnEnregistrerVente_Click"/>
+
+    </StackPanel>
+</Window>

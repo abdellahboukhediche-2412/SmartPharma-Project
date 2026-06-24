@@ -1,0 +1,73 @@
+﻿<Window x:Class="SmartPharma.Views.VentesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestion des ventes"
+        Height="500"
+        Width="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Gestion des ventes"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Margin="0,0,0,15"/>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,15">
+
+            <TextBlock Text="Médicament"/>
+            <ComboBox x:Name="cmbMedicaments"
+                      DisplayMemberPath="Nom"
+                      SelectedValuePath="Id"
+                      Height="30"
+                      Margin="0,5,0,10"/>
+
+            <TextBlock Text="Quantité"/>
+            <TextBox x:Name="txtQuantite"
+                     Height="30"
+                     Margin="0,5,0,10"/>
+
+            <Button Content="Calculer total"
+                    Height="35"
+                    Width="150"
+                    Click="BtnCalculer_Click"/>
+        </StackPanel>
+
+        <TextBlock x:Name="txtTotal"
+                   Grid.Row="2"
+                   Text="Total : 0 $"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0,0,0,15"/>
+
+        <DataGrid x:Name="dgVentes"
+                  Grid.Row="3"
+                  AutoGenerateColumns="True"
+                  Margin="0,0,0,10"/>
+
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+            <Button Content="Enregistrer vente"
+                    Width="150"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Click="BtnEnregistrerVente_Click"/>
+
+            <Button Content="← Retour"
+                    Width="120"
+                    Height="35"
+                    Click="BtnRetour_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
