@@ -1,18 +1,22 @@
 ﻿using SmartPharma.Data;
 using SmartPharma.Models;
+using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartPharma.Views
 {
     public partial class VentesWindow : Window
     {
         private decimal total = 0;
+        private readonly CultureInfo cultureCanada = new CultureInfo("fr-CA");
 
         public VentesWindow()
         {
             InitializeComponent();
-
             ChargerMedicaments();
             ChargerVentes();
         }
@@ -20,7 +24,6 @@ namespace SmartPharma.Views
         private void ChargerMedicaments()
         {
             using var db = new SmartPharmaDbContext();
-
             cmbMedicaments.ItemsSource = db.Medicaments.ToList();
         }
 
@@ -34,7 +37,7 @@ namespace SmartPharma.Views
                     v.Id,
                     v.DateVente,
                     v.QuantiteVendue,
-                    v.MontantTotal,
+                    MontantTotal = v.MontantTotal.ToString("C2", cultureCanada),
                     Medicament = v.Medicament.Nom
                 })
                 .ToList();
@@ -42,26 +45,78 @@ namespace SmartPharma.Views
             dgVentes.ItemsSource = ventes;
         }
 
+        private void cmbMedicaments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbMedicaments.SelectedItem is Medicament medicament)
+            {
+                txtPrix.Text = medicament.Prix.ToString("C2", cultureCanada);
+                txtStock.Text = medicament.QuantiteStock.ToString();
+                txtExpiration.Text = medicament.DateExpiration.ToString("dd/MM/yyyy");
+
+                if (medicament.QuantiteStock < 10)
+                {
+                    txtStock.Foreground = Brushes.Red;
+                    txtStock.FontWeight = FontWeights.Bold;
+                }
+                else
+                {
+                    txtStock.Foreground = Brushes.Black;
+                    txtStock.FontWeight = FontWeights.Normal;
+                }
+
+                txtQuantite.Clear();
+                txtTotal.Text = "0,00 $";
+                total = 0;
+            }
+        }
+
         private void BtnCalculer_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbMedicaments.SelectedItem is Medicament medicament &&
-                int.TryParse(txtQuantite.Text, out int quantite))
+            if (cmbMedicaments.SelectedItem is not Medicament medicament)
             {
-                total = medicament.Prix * quantite;
-                txtTotal.Text = $"Total : {total} $";
+                MessageBox.Show("Veuillez choisir un médicament.");
+                return;
             }
-            else
+
+            if (!int.TryParse(txtQuantite.Text, out int quantite))
             {
-                MessageBox.Show("Veuillez choisir un médicament et entrer une quantité valide.");
+                MessageBox.Show("Veuillez entrer une quantité valide.");
+                return;
             }
+
+            if (quantite <= 0)
+            {
+                MessageBox.Show("La quantité doit être supérieure à 0.");
+                return;
+            }
+
+            if (quantite > medicament.QuantiteStock)
+            {
+                MessageBox.Show("La quantité demandée dépasse le stock disponible.");
+                return;
+            }
+
+            total = medicament.Prix * quantite;
+            txtTotal.Text = total.ToString("C2", cultureCanada);
         }
 
         private void BtnEnregistrerVente_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbMedicaments.SelectedItem is not Medicament medicament ||
-                !int.TryParse(txtQuantite.Text, out int quantite))
+            if (cmbMedicaments.SelectedItem is not Medicament medicament)
             {
-                MessageBox.Show("Veuillez remplir correctement les champs.");
+                MessageBox.Show("Veuillez choisir un médicament.");
+                return;
+            }
+
+            if (!int.TryParse(txtQuantite.Text, out int quantite))
+            {
+                MessageBox.Show("Veuillez entrer une quantité valide.");
+                return;
+            }
+
+            if (quantite <= 0)
+            {
+                MessageBox.Show("La quantité doit être supérieure à 0.");
                 return;
             }
 
@@ -97,7 +152,11 @@ namespace SmartPharma.Views
             MessageBox.Show("Vente enregistrée avec succès.");
 
             txtQuantite.Clear();
-            txtTotal.Text = "Total : 0 $";
+            txtPrix.Clear();
+            txtStock.Clear();
+            txtExpiration.Clear();
+            txtTotal.Text = "0,00 $";
+            total = 0;
 
             ChargerMedicaments();
             ChargerVentes();
@@ -105,7 +164,7 @@ namespace SmartPharma.Views
 
         private void BtnRetour_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
