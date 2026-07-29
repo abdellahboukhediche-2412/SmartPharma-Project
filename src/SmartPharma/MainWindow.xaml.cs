@@ -24,5 +24,23 @@ namespace SmartPharma
         {
             new VentesWindow().ShowDialog();
         }
+
+        private void BtnClients_Click(object sender, RoutedEventArgs e)
+        {
+            var fenetre = new ClientsWindow();
+            fenetre.ShowDialog();
+        }
+
+        private void BtnFournisseurs_Click(object sender, RoutedEventArgs e)
+        {
+            var fenetre = new FournisseursWindow();
+            fenetre.ShowDialog();
+        }
+
+        private void BtnContact_Click(object sender, RoutedEventArgs e)
+        {
+            ContactWindow contact = new ContactWindow();
+            contact.ShowDialog();
+        }
     }
 }

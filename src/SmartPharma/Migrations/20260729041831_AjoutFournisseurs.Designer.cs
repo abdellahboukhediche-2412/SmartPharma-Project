@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartPharma.Data;
 
@@ -11,9 +12,11 @@ using SmartPharma.Data;
 namespace SmartPharma.Migrations
 {
     [DbContext(typeof(SmartPharmaDbContext))]
-    partial class SmartPharmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260729041831_AjoutFournisseurs")]
+    partial class AjoutFournisseurs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,19 +98,12 @@ namespace SmartPharma.Migrations
                     b.Property<DateTime>("DateExpiration")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Forme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Prix")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("QuantiteParBoite")
-                        .HasColumnType("int");
 
                     b.Property<int>("QuantiteStock")
                         .HasColumnType("int");
