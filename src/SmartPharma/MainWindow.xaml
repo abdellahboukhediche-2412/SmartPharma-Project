@@ -67,7 +67,8 @@
 
                 <Button Content="Rapports"
                         Height="45"
-                        Margin="0,0,0,15"/>
+                        Margin="0,0,0,15"
+                        Click="BtnRapports_Click"/>
 
                 <Button Content="Contact"
                         Height="55"
@@ -153,7 +154,7 @@
                             Click="BtnClients_Click"/>
 
                     <Button Width="210"
-                            Height="130"
+                            Height="150"
                             Margin="0,0,20,20"
                             Background="#16A085"
                             Foreground="White"
@@ -163,87 +164,140 @@
                             Click="BtnFournisseurs_Click"/>
 
                     <Button Width="210"
-                            Height="130"
+                            Height="150"
                             Margin="0,0,20,20"
                             Background="#E84375"
                             Foreground="White"
                             FontSize="20"
                             FontWeight="Bold"
-                            Content="Rapports"/>
-
-                    <Button Width="210"
-                            Height="130"
-                            Margin="0,0,20,20"
-                            Background="#7CB342"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Alertes"/>
-
-                    <Button Width="210"
-                            Height="130"
-                            Margin="0,0,20,20"
-                            Background="#34495E"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Paramètres"/>
+                            Content="Rapports"
+                            Click="BtnRapports_Click"/>
+                 
                 </WrapPanel>
             </StackPanel>
 
             <!-- Indicateurs -->
+            
             <Border Grid.Column="1"
-                    Background="#F5F7F8"
-                    CornerRadius="12"
-                    Padding="20">
+        Background="#F5F7F8"
+        CornerRadius="12"
+        Padding="20">
 
                 <StackPanel>
+
                     <TextBlock Text="Indicateurs clés"
-                               FontSize="24"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="#0B3D3E"
+                   Margin="0,0,0,20"/>
+
+                    <!-- Produits en stock -->
+                    <Border Background="White"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,15">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="Produits en stock : "
+                           FontSize="18"/>
+
+                            <TextBlock x:Name="txtDashboardMedicaments"
+                           Text="0"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#16845F"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- Produits périmés -->
+                    <Border Background="White"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,15">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="Produits périmés : "
+                           FontSize="18"
+                           Foreground="#C0392B"/>
+
+                            <TextBlock x:Name="txtDashboardExpires"
+                           Text="0"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#C0392B"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- Stock faible -->
+                    <Border Background="White"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,15">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="Stock faible : "
+                           FontSize="18"
+                           Foreground="#E67E22"/>
+
+                            <TextBlock x:Name="txtDashboardStockFaible"
+                           Text="0"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#E67E22"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- Ventes aujourd'hui -->
+                    <Border Background="White"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,15">
+
+                        <StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock Text="Ventes aujourd'hui : "
+                               FontSize="18"
+                               Foreground="#2980B9"/>
+
+                                <TextBlock x:Name="txtDashboardVentesJour"
+                               Text="0"
+                               FontSize="18"
                                FontWeight="Bold"
-                               Foreground="#0B3D3E"
-                               Margin="0,0,0,20"/>
+                               Foreground="#2980B9"/>
 
-                    <Border Background="White"
-                            CornerRadius="8"
-                            Padding="15"
-                            Margin="0,0,0,15">
-                        <TextBlock Text="Produits en stock : 526"
-                                   FontSize="18"/>
-                    </Border>
+                            </StackPanel>
 
-                    <Border Background="White"
-                            CornerRadius="8"
-                            Padding="15"
-                            Margin="0,0,0,15">
-                        <TextBlock Text="Produits périmés : 13"
-                                   FontSize="18"
-                                   Foreground="#C0392B"/>
-                    </Border>
+                            <TextBlock x:Name="txtDashboardMontantJour"
+                           Text="0,00 $"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="#2980B9"
+                           Margin="0,5,0,0"/>
 
-                    <Border Background="White"
-                            CornerRadius="8"
-                            Padding="15"
-                            Margin="0,0,0,15">
-                        <TextBlock Text="Stock faible : 45"
-                                   FontSize="18"
-                                   Foreground="#E67E22"/>
-                    </Border>
+                        </StackPanel>
 
-                    <Border Background="White"
-                            CornerRadius="8"
-                            Padding="15"
-                            Margin="0,0,0,20">
-                        <TextBlock Text="Ventes aujourd'hui : 78"
-                                   FontSize="18"
-                                   Foreground="#2980B9"/>
                     </Border>
 
                     <Button Content="Actualiser"
-                            Height="40"
-                            Background="#16845F"
-                            Foreground="White"/>
+                Height="40"
+                Background="#16845F"
+                Foreground="White"
+                FontWeight="Bold"
+                Click="BtnActualiser_Click"/>
+
                 </StackPanel>
+
             </Border>
         </Grid>
 
