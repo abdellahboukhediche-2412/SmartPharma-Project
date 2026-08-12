@@ -9,6 +9,8 @@ namespace SmartPharma.Data
         public DbSet<Vente> Ventes { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Fournisseur> Fournisseurs { get; set; }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
+        public DbSet<LigneVente> LignesVente { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

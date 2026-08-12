@@ -1,4 +1,7 @@
-﻿namespace SmartPharma.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace SmartPharma.Models
 {
     public class Vente
     {
@@ -8,10 +11,6 @@
 
         public decimal MontantTotal { get; set; }
 
-        public int MedicamentId { get; set; }
-
-        public Medicament Medicament { get; set; } = null!;
-
-        public int QuantiteVendue { get; set; }
+        public List<LigneVente> Lignes { get; set; } = new();
     }
 }

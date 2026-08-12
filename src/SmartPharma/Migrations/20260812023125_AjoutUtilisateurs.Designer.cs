@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartPharma.Data;
 
@@ -11,9 +12,11 @@ using SmartPharma.Data;
 namespace SmartPharma.Migrations
 {
     [DbContext(typeof(SmartPharmaDbContext))]
-    partial class SmartPharmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260812023125_AjoutUtilisateurs")]
+    partial class AjoutUtilisateurs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,38 +85,6 @@ namespace SmartPharma.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Fournisseurs");
-                });
-
-            modelBuilder.Entity("SmartPharma.Models.LigneVente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("MedicamentId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PrixUnitaire")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantite")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("SousTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("VenteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicamentId");
-
-                    b.HasIndex("VenteId");
-
-                    b.ToTable("LignesVente");
                 });
 
             modelBuilder.Entity("SmartPharma.Models.Medicament", b =>
@@ -192,15 +163,23 @@ namespace SmartPharma.Migrations
                     b.Property<DateTime>("DateVente")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("MedicamentId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("MontantTotal")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("QuantiteVendue")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicamentId");
 
                     b.ToTable("Ventes");
                 });
 
-            modelBuilder.Entity("SmartPharma.Models.LigneVente", b =>
+            modelBuilder.Entity("SmartPharma.Models.Vente", b =>
                 {
                     b.HasOne("SmartPharma.Models.Medicament", "Medicament")
                         .WithMany()
@@ -208,20 +187,7 @@ namespace SmartPharma.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartPharma.Models.Vente", "Vente")
-                        .WithMany("Lignes")
-                        .HasForeignKey("VenteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Medicament");
-
-                    b.Navigation("Vente");
-                });
-
-            modelBuilder.Entity("SmartPharma.Models.Vente", b =>
-                {
-                    b.Navigation("Lignes");
                 });
 #pragma warning restore 612, 618
         }

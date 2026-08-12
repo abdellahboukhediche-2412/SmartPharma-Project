@@ -1,4 +1,5 @@
 ﻿using SmartPharma.Data;
+using SmartPharma.Helpers;
 using SmartPharma.Views;
 using System;
 using System.Globalization;
@@ -17,7 +18,14 @@ namespace SmartPharma
             InitializeComponent();
 
             ChargerStatistiques();
+            AfficherUtilisateur();
+            AfficherDate();
+            AfficherHeureConnexion();
         }
+
+        // =====================================================
+        // STATISTIQUES DU TABLEAU DE BORD
+        // =====================================================
 
         private void ChargerStatistiques()
         {
@@ -28,32 +36,31 @@ namespace SmartPharma
                 DateTime aujourdHui = DateTime.Today;
                 DateTime demain = aujourdHui.AddDays(1);
 
-                // Nombre total de médicaments
-                int totalMedicaments = db.Medicaments.Count();
+                int totalMedicaments =
+                    db.Medicaments.Count();
 
-                // Stock faible : moins de 10 unités
-                int stockFaible = db.Medicaments
-                    .Count(m => m.QuantiteStock < 10);
+                int stockFaible =
+                    db.Medicaments
+                        .Count(m => m.QuantiteStock < 10);
 
-                // Médicaments périmés
-                int medicamentsExpires = db.Medicaments
-                    .Count(m => m.DateExpiration < aujourdHui);
+                int medicamentsExpires =
+                    db.Medicaments
+                        .Count(m => m.DateExpiration < aujourdHui);
 
-                // Nombre de ventes aujourd'hui
-                int ventesAujourdhui = db.Ventes
-                    .Count(v =>
-                        v.DateVente >= aujourdHui &&
-                        v.DateVente < demain);
+                int ventesAujourdhui =
+                    db.Ventes
+                        .Count(v =>
+                            v.DateVente >= aujourdHui &&
+                            v.DateVente < demain);
 
-                // Montant total des ventes aujourd'hui
-                decimal montantAujourdhui = db.Ventes
-                    .Where(v =>
-                        v.DateVente >= aujourdHui &&
-                        v.DateVente < demain)
-                    .Select(v => (decimal?)v.MontantTotal)
-                    .Sum() ?? 0;
+                decimal montantAujourdhui =
+                    db.Ventes
+                        .Where(v =>
+                            v.DateVente >= aujourdHui &&
+                            v.DateVente < demain)
+                        .Select(v => (decimal?)v.MontantTotal)
+                        .Sum() ?? 0;
 
-                // Mise à jour du tableau de bord
                 txtDashboardMedicaments.Text =
                     totalMedicaments.ToString();
 
@@ -81,6 +88,15 @@ namespace SmartPharma
                     MessageBoxImage.Error);
             }
         }
+        private void AfficherHeureConnexion()
+        {
+            txtHeureConnexion.Text =
+                "Connecté à " + DateTime.Now.ToString("HH:mm");
+        }
+
+        // =====================================================
+        // MÉDICAMENTS
+        // =====================================================
 
         private void BtnMedicaments_Click(
             object sender,
@@ -91,6 +107,10 @@ namespace SmartPharma
             ChargerStatistiques();
         }
 
+        // =====================================================
+        // STOCK
+        // =====================================================
+
         private void BtnStock_Click(
             object sender,
             RoutedEventArgs e)
@@ -99,6 +119,10 @@ namespace SmartPharma
 
             ChargerStatistiques();
         }
+
+        // =====================================================
+        // VENTES
+        // =====================================================
 
         private void BtnVentes_Click(
             object sender,
@@ -109,43 +133,83 @@ namespace SmartPharma
             ChargerStatistiques();
         }
 
+        // =====================================================
+        // CLIENTS
+        // =====================================================
+
         private void BtnClients_Click(
             object sender,
             RoutedEventArgs e)
         {
             var fenetre = new ClientsWindow();
+
             fenetre.ShowDialog();
 
             ChargerStatistiques();
         }
+
+        // =====================================================
+        // FOURNISSEURS
+        // =====================================================
 
         private void BtnFournisseurs_Click(
             object sender,
             RoutedEventArgs e)
         {
             var fenetre = new FournisseursWindow();
+
             fenetre.ShowDialog();
 
             ChargerStatistiques();
         }
+
+        // =====================================================
+        // CONTACT
+        // =====================================================
 
         private void BtnContact_Click(
             object sender,
             RoutedEventArgs e)
         {
-            var contact = new ContactWindow();
+            var contact =
+                new ContactWindow();
+
             contact.ShowDialog();
         }
+
+        // =====================================================
+        // RAPPORTS
+        // =====================================================
 
         private void BtnRapports_Click(
             object sender,
             RoutedEventArgs e)
         {
-            var fenetre = new RapportsWindow();
+            var fenetre =
+                new RapportsWindow();
+
             fenetre.ShowDialog();
 
             ChargerStatistiques();
         }
+
+        // =====================================================
+        // UTILISATEURS
+        // =====================================================
+
+        private void BtnUtilisateurs_Click(
+            object sender,
+            RoutedEventArgs e)
+        {
+            var fenetre =
+                new UtilisateursWindow();
+
+            fenetre.ShowDialog();
+        }
+
+        // =====================================================
+        // ACTUALISER
+        // =====================================================
 
         private void BtnActualiser_Click(
             object sender,
@@ -158,6 +222,83 @@ namespace SmartPharma
                 "SmartPharma",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
+        }
+
+        // =====================================================
+        // AFFICHER UTILISATEUR CONNECTÉ
+        // =====================================================
+
+        private void AfficherUtilisateur()
+        {
+            if (SessionUtilisateur.UtilisateurConnecte != null)
+            {
+                var utilisateur =
+                    SessionUtilisateur.UtilisateurConnecte;
+
+                txtUtilisateurConnecte.Text =
+                    utilisateur.Prenom +
+                    " " +
+                    utilisateur.Nom;
+
+                txtBienvenue.Text =
+                    "Bonjour, " +
+                    utilisateur.Prenom +
+                    " 👋";
+            }
+            else
+            {
+                txtUtilisateurConnecte.Text =
+                    "Aucun utilisateur";
+
+                txtBienvenue.Text =
+                    "Bonjour 👋";
+            }
+        }
+
+        // =====================================================
+        // DÉCONNEXION
+        // =====================================================
+
+        private void BtnDeconnexion_Click(
+            object sender,
+            RoutedEventArgs e)
+        {
+            var resultat =
+                MessageBox.Show(
+                    "Voulez-vous vraiment vous déconnecter ?",
+                    "Déconnexion",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+            if (resultat != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            // Effacer la session actuelle
+            SessionUtilisateur.UtilisateurConnecte = null;
+
+            // Ouvrir la page de connexion
+            var login =
+                new LoginWindow();
+
+            login.Show();
+
+            // Fermer le tableau de bord
+            Close();
+        }
+
+        // =====================================================
+        // DATE
+        // =====================================================
+
+        private void AfficherDate()
+        {
+            txtDate.Text =
+                "Date : " +
+                DateTime.Now.ToString(
+                    "dd MMMM yyyy",
+                    cultureCanada);
         }
     }
 }

@@ -4,313 +4,574 @@
         Title="SmartPharma"
         Height="750"
         Width="1200"
+        MinHeight="700"
+        MinWidth="1100"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
+
+        <!-- ================================================= -->
+        <!-- ARRIÈRE-PLAN -->
+        <!-- ================================================= -->
+
         <Grid.Background>
-
             <ImageBrush ImageSource="/Images/pharmacie.jpg"
-            Stretch="UniformToFill"
-            Opacity="0.35"/>
-
+                        Stretch="UniformToFill"
+                        Opacity="0.35"/>
         </Grid.Background>
+
+        <!-- ================================================= -->
+        <!-- COLONNES -->
+        <!-- ================================================= -->
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <!-- ================================================= -->
+        <!-- LIGNES -->
+        <!-- ================================================= -->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
 
-        <!-- Menu gauche -->
+        <!-- ================================================= -->
+        <!-- MENU GAUCHE -->
+        <!-- ================================================= -->
+
         <Border Grid.Row="0"
                 Grid.Column="0"
                 Grid.RowSpan="2"
                 Background="#0B3D3E">
 
-            <StackPanel Margin="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
 
-                <TextBlock Text="SmartPharma"
-                           Foreground="White"
-                           FontSize="26"
-                           FontWeight="Bold"
-                           Margin="0,30,0,40"
-                           HorizontalAlignment="Center"/>
+                <StackPanel Margin="20">
 
-                <Button Content="Accueil"
-                        Height="45"
-                        Margin="0,0,0,15"
-                        Background="#1ABC9C"
-                        Foreground="White"/>
+                    <TextBlock Text="SmartPharma"
+                               Foreground="White"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Margin="0,30,0,40"
+                               HorizontalAlignment="Center"/>
 
-                <Button Content="Médicaments"
-                        Height="45"
-                        Margin="0,0,0,15"
-                        Click="BtnMedicaments_Click"/>
+                    <Button Content="Accueil"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Background="#1ABC9C"
+                            Foreground="White"/>
 
-                <Button Content="Stock"
-                        Height="45"
-                        Margin="0,0,0,15"
-                        Click="BtnStock_Click"/>
+                    <Button Content="Médicaments"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnMedicaments_Click"/>
 
-                <Button Content="Ventes"
-                        Height="45"
-                        Margin="0,0,0,15"
-                        Click="BtnVentes_Click"/>
+                    <Button Content="Stock"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnStock_Click"/>
 
-                <Button Content="Clients"
-                        Height="45"
-                        Margin="0,0,0,15"
-                        Click="BtnClients_Click"/>
+                    <Button Content="Ventes"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnVentes_Click"/>
 
-                <Button Content="Rapports"
-                        Height="45"
-                        Margin="0,0,0,15"
-                        Click="BtnRapports_Click"/>
+                    <Button Content="Clients"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnClients_Click"/>
 
-                <Button Content="Contact"
-                        Height="55"
-                        Margin="0,0,0,15"
-                        FontSize="16"
-                        FontWeight="SemiBold"
-                        Background="White"
-                        Foreground="#0B3D3E"
-                        BorderBrush="#D6D6D6"
-                        Click="BtnContact_Click"/>
-               
-            </StackPanel>
+                    <Button Content="Fournisseurs"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnFournisseurs_Click"/>
+
+                    <Button Content="Rapports"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnRapports_Click"/>
+
+                    <Button Content="Utilisateurs"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            Click="BtnUtilisateurs_Click"/>
+
+                    <Button Content="Contact"
+                            Height="45"
+                            Margin="0,0,0,15"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Background="White"
+                            Foreground="#0B3D3E"
+                            BorderBrush="#D6D6D6"
+                            Click="BtnContact_Click"/>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
         </Border>
 
-        <!-- Contenu principal -->
+        <!-- ================================================= -->
+        <!-- CONTENU PRINCIPAL -->
+        <!-- ================================================= -->
+
         <Grid Grid.Row="0"
               Grid.Column="1"
               Margin="30">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="330"/>
+                <ColumnDefinition Width="380"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Partie centrale -->
-            <StackPanel Grid.Column="0">
+            <!-- ================================================= -->
+            <!-- PARTIE CENTRALE -->
+            <!-- ================================================= -->
 
-                <TextBlock Text="Bonjour, ADMIN 👋"
-                           FontSize="18"
-                           Foreground="#0B3D3E"/>
+            <ScrollViewer Grid.Column="0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
 
-                <TextBlock Text="Bienvenue dans SmartPharma"
-                           FontSize="32"
-                           FontWeight="Bold"
-                           Foreground="#0B3D3E"
-                           Margin="0,10,0,5"/>
+                <StackPanel Margin="0,0,20,0">
 
-                <TextBlock Text="Votre solution intelligente de gestion de pharmacie"
-                           FontSize="18"
-                           Foreground="#333"
-                           Margin="0,0,0,30"/>
+                    <!-- BIENVENUE DYNAMIQUE -->
 
-                <WrapPanel>
-
-                    <Button Width="210"
-                            Height="150"
-                            Margin="0,0,20,20"
-                            Background="#2ECC71"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Médicaments"
-                            Click="BtnMedicaments_Click"/>
-
-                    <Button Width="210"
-                            Height="150"
-                            Margin="0,0,20,20"
-                            Background="#3498DB"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Stock"
-                            Click="BtnStock_Click"/>
-
-                    <Button Width="210"
-                            Height="150"
-                            Margin="0,0,20,20"
-                            Background="#8E44AD"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Ventes"
-                            Click="BtnVentes_Click"/>
-
-                    <Button Width="210"
-                            Height="150"
-                            Margin="0,0,20,20"
-                            Background="#E67E22"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Clients"
-                            Click="BtnClients_Click"/>
-
-                    <Button Width="210"
-                            Height="150"
-                            Margin="0,0,20,20"
-                            Background="#16A085"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Fournisseurs"
-                            Click="BtnFournisseurs_Click"/>
-
-                    <Button Width="210"
-                            Height="150"
-                            Margin="0,0,20,20"
-                            Background="#E84375"
-                            Foreground="White"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Content="Rapports"
-                            Click="BtnRapports_Click"/>
-                 
-                </WrapPanel>
-            </StackPanel>
-
-            <!-- Indicateurs -->
-            
-            <Border Grid.Column="1"
-        Background="#F5F7F8"
-        CornerRadius="12"
-        Padding="20">
-
-                <StackPanel>
-
-                    <TextBlock Text="Indicateurs clés"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   Foreground="#0B3D3E"
-                   Margin="0,0,0,20"/>
-
-                    <!-- Produits en stock -->
-                    <Border Background="White"
-                CornerRadius="8"
-                Padding="15"
-                Margin="0,0,0,15">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <TextBlock Text="Produits en stock : "
-                           FontSize="18"/>
-
-                            <TextBlock x:Name="txtDashboardMedicaments"
-                           Text="0"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="#16845F"/>
-
-                        </StackPanel>
-
-                    </Border>
-
-                    <!-- Produits périmés -->
-                    <Border Background="White"
-                CornerRadius="8"
-                Padding="15"
-                Margin="0,0,0,15">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <TextBlock Text="Produits périmés : "
-                           FontSize="18"
-                           Foreground="#C0392B"/>
-
-                            <TextBlock x:Name="txtDashboardExpires"
-                           Text="0"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="#C0392B"/>
-
-                        </StackPanel>
-
-                    </Border>
-
-                    <!-- Stock faible -->
-                    <Border Background="White"
-                CornerRadius="8"
-                Padding="15"
-                Margin="0,0,0,15">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <TextBlock Text="Stock faible : "
-                           FontSize="18"
-                           Foreground="#E67E22"/>
-
-                            <TextBlock x:Name="txtDashboardStockFaible"
-                           Text="0"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="#E67E22"/>
-
-                        </StackPanel>
-
-                    </Border>
-
-                    <!-- Ventes aujourd'hui -->
-                    <Border Background="White"
-                CornerRadius="8"
-                Padding="15"
-                Margin="0,0,0,15">
-
-                        <StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-
-                                <TextBlock Text="Ventes aujourd'hui : "
+                    <TextBlock x:Name="txtBienvenue"
+                               Text="Bonjour 👋"
                                FontSize="18"
-                               Foreground="#2980B9"/>
+                               Foreground="#0B3D3E"/>
 
-                                <TextBlock x:Name="txtDashboardVentesJour"
-                               Text="0"
-                               FontSize="18"
+                    <TextBlock Text="Bienvenue dans SmartPharma"
+                               FontSize="32"
                                FontWeight="Bold"
-                               Foreground="#2980B9"/>
+                               Foreground="#0B3D3E"
+                               Margin="0,10,0,5"/>
 
-                            </StackPanel>
+                    <TextBlock Text="Votre solution intelligente de gestion de pharmacie"
+                               FontSize="18"
+                               Foreground="#333"
+                               Margin="0,0,0,30"/>
 
-                            <TextBlock x:Name="txtDashboardMontantJour"
-                           Text="0,00 $"
-                           FontSize="14"
-                           FontWeight="Bold"
-                           Foreground="#2980B9"
-                           Margin="0,5,0,0"/>
+                    <!-- ================================================= -->
+                    <!-- CARTES PRINCIPALES -->
+                    <!-- ================================================= -->
 
-                        </StackPanel>
+                    <!-- ================================================= -->
+                    <!-- CARTES PRINCIPALES -->
+                    <!-- ================================================= -->
 
-                    </Border>
+                    <UniformGrid Columns="3"
+             Margin="0,0,10,0">
 
-                    <Button Content="Actualiser"
-                Height="40"
-                Background="#16845F"
-                Foreground="White"
-                FontWeight="Bold"
-                Click="BtnActualiser_Click"/>
+                        <!-- MÉDICAMENTS -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#2ECC71"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Médicaments"
+            Click="BtnMedicaments_Click"/>
+
+                        <!-- STOCK -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#3498DB"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Stock"
+            Click="BtnStock_Click"/>
+
+                        <!-- VENTES -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#8E44AD"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Ventes"
+            Click="BtnVentes_Click"/>
+
+                        <!-- CLIENTS -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#E67E22"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Clients"
+            Click="BtnClients_Click"/>
+
+                        <!-- FOURNISSEURS -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#16A085"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Fournisseurs"
+            Click="BtnFournisseurs_Click"/>
+
+                        <!-- RAPPORTS -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#E84375"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Rapports"
+            Click="BtnRapports_Click"/>
+
+                        <!-- UTILISATEURS -->
+                        <Button Height="135"
+            Margin="0,0,15,15"
+            Background="#6C5CE7"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Content="Utilisateurs"
+            Click="BtnUtilisateurs_Click"/>
+
+                    </UniformGrid>
 
                 </StackPanel>
 
-            </Border>
+            </ScrollViewer>
+
+            <!-- ================================================= -->
+            <!-- PANNEAU DROIT -->
+            <!-- ================================================= -->
+
+            <ScrollViewer Grid.Column="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+
+                <StackPanel>
+
+                    <!-- ================================================= -->
+                    <!-- CARTE UTILISATEUR CONNECTÉ -->
+                    <!-- ================================================= -->
+
+                    <Border Background="White"
+                            CornerRadius="15"
+                            Padding="20"
+                            Margin="0,0,0,20">
+
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="12"
+                                              ShadowDepth="2"
+                                              Opacity="0.18"/>
+                        </Border.Effect>
+
+                        <StackPanel>
+
+                            <!-- Avatar + Informations -->
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Border Width="65"
+                                        Height="65"
+                                        CornerRadius="32.5"
+                                        Background="#16845F"
+                                        VerticalAlignment="Center">
+
+                                    <TextBlock Text="👤"
+                                               FontSize="34"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+
+                                </Border>
+
+                                <StackPanel Margin="15,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Width="250">
+
+                                    <TextBlock Text="Utilisateur connecté"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               Foreground="#607D7D"/>
+
+                                    <TextBlock x:Name="txtUtilisateurConnecte"
+                                               Text="Utilisateur"
+                                               FontSize="21"
+                                               FontWeight="Bold"
+                                               Foreground="#16845F"
+                                               TextWrapping="Wrap"
+                                               Margin="0,4,0,3"/>
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="●"
+                                                   Foreground="#2ECC71"
+                                                   FontSize="12"
+                                                   Margin="0,0,5,0"/>
+
+                                        <TextBlock Text="Connecté"
+                                                   Foreground="#2ECC71"
+                                                   FontSize="12"
+                                                   FontWeight="SemiBold"/>
+
+                                    </StackPanel>
+
+                                    <TextBlock x:Name="txtHeureConnexion"
+                                               Text="Connecté à --:--"
+                                               FontSize="11"
+                                               Foreground="#95A5A6"
+                                               Margin="0,3,0,0"/>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                            <!-- Bouton Déconnexion sous les informations -->
+
+                            <Button Content="Déconnexion"
+                                    Width="170"
+                                    Height="40"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Center"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="14"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="BtnDeconnexion_Click">
+
+                                <Button.Style>
+
+                                    <Style TargetType="Button">
+
+                                        <Setter Property="Background"
+                                                Value="#E74C3C"/>
+
+                                        <Setter Property="Template">
+
+                                            <Setter.Value>
+
+                                                <ControlTemplate TargetType="Button">
+
+                                                    <Border x:Name="border"
+                                                            Background="{TemplateBinding Background}"
+                                                            CornerRadius="8"
+                                                            Padding="8">
+
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center"/>
+
+                                                    </Border>
+
+                                                    <ControlTemplate.Triggers>
+
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+
+                                                            <Setter TargetName="border"
+                                                                    Property="Background"
+                                                                    Value="#C0392B"/>
+
+                                                        </Trigger>
+
+                                                        <Trigger Property="IsPressed"
+                                                                 Value="True">
+
+                                                            <Setter TargetName="border"
+                                                                    Property="Opacity"
+                                                                    Value="0.8"/>
+
+                                                        </Trigger>
+
+                                                    </ControlTemplate.Triggers>
+
+                                                </ControlTemplate>
+
+                                            </Setter.Value>
+
+                                        </Setter>
+
+                                    </Style>
+
+                                </Button.Style>
+
+                            </Button>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- ================================================= -->
+                    <!-- INDICATEURS -->
+                    <!-- ================================================= -->
+
+                    <Border Background="#F5F7F8"
+                            CornerRadius="12"
+                            Padding="20">
+
+                        <StackPanel>
+
+                            <TextBlock Text="Indicateurs clés"
+                                       FontSize="24"
+                                       FontWeight="Bold"
+                                       Foreground="#0B3D3E"
+                                       Margin="0,0,0,20"/>
+
+                            <!-- Produits en stock -->
+
+                            <Border Background="White"
+                                    CornerRadius="8"
+                                    Padding="15"
+                                    Margin="0,0,0,15">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="Produits en stock : "
+                                               FontSize="17"/>
+
+                                    <TextBlock x:Name="txtDashboardMedicaments"
+                                               Text="0"
+                                               FontSize="17"
+                                               FontWeight="Bold"
+                                               Foreground="#16845F"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- Produits périmés -->
+
+                            <Border Background="White"
+                                    CornerRadius="8"
+                                    Padding="15"
+                                    Margin="0,0,0,15">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="Produits périmés : "
+                                               FontSize="17"
+                                               Foreground="#C0392B"/>
+
+                                    <TextBlock x:Name="txtDashboardExpires"
+                                               Text="0"
+                                               FontSize="17"
+                                               FontWeight="Bold"
+                                               Foreground="#C0392B"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- Stock faible -->
+
+                            <Border Background="White"
+                                    CornerRadius="8"
+                                    Padding="15"
+                                    Margin="0,0,0,15">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="Stock faible : "
+                                               FontSize="17"
+                                               Foreground="#E67E22"/>
+
+                                    <TextBlock x:Name="txtDashboardStockFaible"
+                                               Text="0"
+                                               FontSize="17"
+                                               FontWeight="Bold"
+                                               Foreground="#E67E22"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- Ventes aujourd'hui -->
+
+                            <Border Background="White"
+                                    CornerRadius="8"
+                                    Padding="15"
+                                    Margin="0,0,0,15">
+
+                                <StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="Ventes aujourd'hui : "
+                                                   FontSize="17"
+                                                   Foreground="#2980B9"/>
+
+                                        <TextBlock x:Name="txtDashboardVentesJour"
+                                                   Text="0"
+                                                   FontSize="17"
+                                                   FontWeight="Bold"
+                                                   Foreground="#2980B9"/>
+
+                                    </StackPanel>
+
+                                    <TextBlock x:Name="txtDashboardMontantJour"
+                                               Text="0,00 $"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="#2980B9"
+                                               Margin="0,5,0,0"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- Actualiser -->
+
+                            <Button Content="Actualiser"
+                                    Height="40"
+                                    Background="#16845F"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="BtnActualiser_Click"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
         </Grid>
 
-        <!-- Footer -->
+        <!-- ================================================= -->
+        <!-- FOOTER -->
+        <!-- ================================================= -->
+
         <Border Grid.Row="1"
                 Grid.Column="1"
                 Background="#ECF0F1">
 
             <DockPanel Margin="20,0">
 
-                <TextBlock Text="Date : 30 juin 2026"
+                <TextBlock x:Name="txtDate"
+                           Text="Date"
                            VerticalAlignment="Center"
-                           Foreground="#0B3D3E"/>
+                           Foreground="#0B3D3E"
+                           FontWeight="SemiBold"/>
 
                 <TextBlock Text="Version 1.0.0"
                            DockPanel.Dock="Right"
@@ -318,6 +579,9 @@
                            Foreground="#0B3D3E"/>
 
             </DockPanel>
+
         </Border>
+
     </Grid>
+
 </Window>
