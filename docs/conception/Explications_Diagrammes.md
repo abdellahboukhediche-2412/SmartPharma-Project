@@ -1,17 +1,13 @@
 # Dossier de conception - SmartPharma
 
 ## Diagramme de cas d'utilisation
-
-Ce diagramme présente les principaux acteurs du système SmartPharma (administrateur, pharmacien, employé et gestionnaire) ainsi que les fonctionnalités auxquelles ils ont accès. Il permet de visualiser les interactions entre les utilisateurs et le système. Ce diagramme est directement lié au Sprint 1 puisqu'il représente les fonctionnalités principales à développer.
+Diagramme de cas d’utilisation : remplacer les quatre acteurs Pharmacien / Employé / Gestionnaire / Administrateur par un seul acteur Utilisateur de la pharmacie, puisque tous ont désormais le même accès. Les cas d’utilisation doivent être : se connecter, gérer les médicaments, consulter le stock, effectuer une vente, gérer les clients, gérer les fournisseurs, consulter les rapports, gérer les utilisateurs, utiliser le formulaire Contact, se déconnecter. Ton document actuel décrit encore plusieurs catégories d’utilisateurs avec des accès différents.
 
 ## Diagramme de classes
-
-Ce diagramme représente la structure du système SmartPharma. Il montre les principales classes, leurs attributs, leurs méthodes ainsi que les relations entre elles. Il permet de comprendre l'organisation des données et sert de base au développement de la base de données et de l'application.
-
-## Diagramme d'activité
-
-Ce diagramme décrit le processus de vente d'un médicament dans SmartPharma.
+Diagramme de classes : supprimer ou mettre de côté Pharmacien et Ordonnance si ces classes ne sont pas réellement implémentées. Ajouter au minimum Utilisateur, Medicament, Client, Fournisseur, Vente et surtout LigneVente. La relation importante est désormais Vente 1 → N LigneVente et Medicament 1 → N LigneVente. C’est cette structure qui permet à une seule vente de contenir plusieurs médicaments.
 
 ## Diagramme de séquence
+Diagramme de séquence : remplacer le scénario « vente d’un médicament » par vente de plusieurs médicaments. Après connexion, l’utilisateur sélectionne un médicament, saisit la quantité, l’ajoute au panier, répète éventuellement l’opération pour d’autres médicaments, puis SmartPharma calcule le total général, crée la vente, crée toutes les lignes de vente et met à jour le stock de chaque médicament.
 
-Ce diagramme illustre les échanges entre le client, le pharmacien, le système SmartPharma et le stock lors d'une vente. Il montre l'ordre chronologique des interactions nécessaires pour effectuer une transaction. Ce scénario correspond à une fonctionnalité importante du projet.
+## Diagramme d'activité
+Diagramme d’activité : ajouter une boucle après « Ajouter au panier » avec la décision Ajouter un autre médicament ?. Si oui, retour à la sélection d’un médicament. Si non, calcul du total → enregistrement de la vente → création des lignes de vente → mise à jour des stocks → affichage dans l’historique.
