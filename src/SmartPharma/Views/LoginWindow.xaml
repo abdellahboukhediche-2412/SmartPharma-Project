@@ -4,98 +4,115 @@
         Title="Connexion - SmartPharma"
         Height="500"
         Width="500"
+        MinHeight="400"
+        MinWidth="450"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         Background="#F4F7F6">
 
-    <Grid Margin="35">
+    <Grid Background="#F4F7F6">
 
-        <Border Background="White"
-                CornerRadius="18"
-                Padding="30">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
 
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="15"
-                                  ShadowDepth="2"
-                                  Opacity="0.15"/>
-            </Border.Effect>
+            <Grid Margin="35">
 
-            <StackPanel>
+                <Border Background="White"
+                        CornerRadius="18"
+                        Padding="30"
+                        MaxWidth="430"
+                        HorizontalAlignment="Center">
 
-                <TextBlock Text="SmartPharma"
-                           FontSize="32"
-                           FontWeight="Bold"
-                           Foreground="#0B3D3E"
-                           HorizontalAlignment="Center"/>
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15"
+                                          ShadowDepth="2"
+                                          Opacity="0.15"/>
+                    </Border.Effect>
 
-                <TextBlock Text="Connexion à votre espace"
-                           FontSize="15"
-                           Foreground="#607D7D"
-                           HorizontalAlignment="Center"
-                           Margin="0,8,0,30"/>
+                    <StackPanel>
 
-                <!-- Nom d'utilisateur -->
-                <TextBlock Text="Nom d'utilisateur"
-                           FontWeight="SemiBold"
-                           Foreground="#0B3D3E"/>
+                        <!-- TITRE -->
+                        <TextBlock Text="SmartPharma"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="#0B3D3E"
+                                   HorizontalAlignment="Center"/>
 
-                <TextBox x:Name="txtNomUtilisateur"
-                         Height="42"
-                         Margin="0,7,0,20"
-                         Padding="10"
-                         FontSize="14"
-                         VerticalContentAlignment="Center"/>
+                        <TextBlock Text="Connexion à votre espace"
+                                   FontSize="15"
+                                   Foreground="#607D7D"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,8,0,30"/>
 
-                <!-- Mot de passe -->
-                <TextBlock Text="Mot de passe"
-                           FontWeight="SemiBold"
-                           Foreground="#0B3D3E"/>
+                        <!-- NOM D'UTILISATEUR -->
+                        <TextBlock Text="Nom d'utilisateur"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0B3D3E"/>
 
-                <PasswordBox x:Name="txtMotDePasse"
-                             Height="42"
-                             Margin="0,7,0,10"
-                             Padding="10"
-                             FontSize="14"/>
+                        <TextBox x:Name="txtNomUtilisateur"
+                                 Height="42"
+                                 Margin="0,7,0,20"
+                                 Padding="10"
+                                 FontSize="14"
+                                 VerticalContentAlignment="Center"/>
 
-                <!-- Se souvenir -->
-                <CheckBox x:Name="chkSeSouvenir"
-                          Content="Se souvenir de moi"
-                          Margin="0,0,0,20"
-                          Foreground="#0B3D3E"/>
+                        <!-- MOT DE PASSE -->
+                        <TextBlock Text="Mot de passe"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0B3D3E"/>
 
-                <!-- Erreur -->
-                <TextBlock x:Name="txtErreur"
-                           Foreground="#E74C3C"
-                           FontWeight="SemiBold"
-                           TextAlignment="Center"
-                           Visibility="Collapsed"
-                           Margin="0,0,0,15"/>
+                        <PasswordBox x:Name="txtMotDePasse"
+                                     Height="42"
+                                     Margin="0,7,0,10"
+                                     Padding="10"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"/>
 
-                <!-- Connexion -->
-                <Button Content="Se connecter"
-                        Height="45"
-                        Background="#16845F"
-                        Foreground="White"
-                        FontSize="15"
-                        FontWeight="Bold"
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        Click="BtnConnexion_Click"/>
+                        <!-- SE SOUVENIR -->
+                        <CheckBox x:Name="chkSeSouvenir"
+                                  Content="Se souvenir de moi"
+                                  Margin="0,0,0,20"
+                                  Foreground="#0B3D3E"/>
 
-                <!-- Quitter -->
-                <Button Content="Quitter"
-                        Height="40"
-                        Margin="0,12,0,0"
-                        Background="#0B3D3E"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        Click="BtnQuitter_Click"/>
+                        <!-- MESSAGE D'ERREUR -->
+                        <TextBlock x:Name="txtErreur"
+                                   Foreground="#E74C3C"
+                                   FontWeight="SemiBold"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Visibility="Collapsed"
+                                   Margin="0,0,0,15"/>
 
-            </StackPanel>
+                        <!-- CONNEXION -->
+                        <Button Content="Se connecter"
+                                Height="45"
+                                Background="#16845F"
+                                Foreground="White"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="BtnConnexion_Click"/>
 
-        </Border>
+                        <!-- QUITTER -->
+                        <Button Content="Quitter"
+                                Height="40"
+                                Margin="0,12,0,0"
+                                Background="#0B3D3E"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="BtnQuitter_Click"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+        </ScrollViewer>
 
     </Grid>
+
 </Window>
